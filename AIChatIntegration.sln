@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIChatIntegration.Server", "AIChatIntegration.Server\AIChatIntegration.Server.csproj", "{1CCE20A9-FF99-4014-AB23-622B49305554}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "aichatintegration.client", "aichatintegration.client\aichatintegration.client.esproj", "{6DA8D645-038F-4332-9A09-56E47433A01A}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1A1462D4-DF1F-499A-8BEA-21305EF4BE77}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{6DA8D645-038F-4332-9A09-56E47433A01A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DA8D645-038F-4332-9A09-56E47433A01A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6DA8D645-038F-4332-9A09-56E47433A01A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1A1462D4-DF1F-499A-8BEA-21305EF4BE77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A1462D4-DF1F-499A-8BEA-21305EF4BE77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A1462D4-DF1F-499A-8BEA-21305EF4BE77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A1462D4-DF1F-499A-8BEA-21305EF4BE77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

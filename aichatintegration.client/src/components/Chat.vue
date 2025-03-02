@@ -75,7 +75,7 @@ const sendMessage = async () => {
 
   try {
     // Send to backend
-    const response = await fetch('https://localhost:32768/chat', {
+    const response = await fetch(`https://localhost:5001/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

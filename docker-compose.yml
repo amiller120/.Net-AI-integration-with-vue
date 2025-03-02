@@ -1,0 +1,6 @@
+services:
+  aichatintegration.server:
+    image: ${DOCKER_REGISTRY-}aichatintegrationserver
+    build:
+      context: .
+      dockerfile: AIChatIntegration.Server/Dockerfile
