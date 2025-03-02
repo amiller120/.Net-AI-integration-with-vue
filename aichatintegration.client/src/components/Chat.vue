@@ -286,12 +286,10 @@ onMounted(() => {
   background-color: #3d5d8a;
 }
 
-/* For received messages styling */
 .chat-box-body-message.received {
   justify-content: flex-start;
 }
 
-/* For sent messages styling */
 .chat-box-body-message.sent {
   flex-direction: row-reverse;
   justify-content: flex-end;
