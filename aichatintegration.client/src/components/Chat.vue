@@ -45,7 +45,6 @@ interface ChatMessage {
   timestamp: Date;
 }
 
-// Chat state
 const messages = ref<ChatMessage[]>([]);
 const newMessage = ref('');
 const userAvatar = 'https://via.placeholder.com/150?text=You';
@@ -53,11 +52,9 @@ const botAvatar = 'https://via.placeholder.com/150?text=AI';
 const chatBoxBody = ref<HTMLElement | null>(null);
 const isExpanded = ref(false);
 
-// Send message to backend
 const sendMessage = async () => {
   if (!newMessage.value.trim()) return;
 
-  // Add user message to UI
   const userMessage: ChatMessage = {
     text: newMessage.value,
     isUser: true,
@@ -128,9 +125,8 @@ const toggleExpand = () => {
   });
 };
 
-// Close chat function
+
 const closeChat = () => {
-  // Implement close behavior if needed
   console.log('Chat closed');
 };
 
