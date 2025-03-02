@@ -22,14 +22,14 @@ namespace AIChatIntegration.Server.Endpoints.Chat
             }
 
             // if you need a system message
-        //    var systemMessage = new ChatMessage(
-        //    ChatRole.System,
-        //    "You are a trust bank officer, you provide helpful expert information about banking. Do not offer to take their information, only help give answers when you are able."
-        //);
+            var systemMessage = new ChatMessage(
+            ChatRole.System,
+            "You are a coding expert. Be helpful and assist with any questions."
+            );
 
             var userMessage = new ChatMessage(ChatRole.User, req.Message);
 
-            var response = await chatClient.GetResponseAsync(userMessage, cancellationToken: ct);
+            var response = await chatClient.GetResponseAsync([systemMessage, userMessage], cancellationToken: ct);
 
             await SendAsync(new ChatResponse
             {

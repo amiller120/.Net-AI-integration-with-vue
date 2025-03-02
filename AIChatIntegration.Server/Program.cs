@@ -1,5 +1,7 @@
+using AIChatIntegration.Server.Models.Configuration;
 using FastEndpoints;
 using Microsoft.Extensions.AI;
+using OpenAI;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,23 +10,32 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddFastEndpoints();
-
+bool isDev = builder.Environment.IsDevelopment();
 
 // Configure CORS
-builder.Services.AddCors(options =>
+if (isDev)
 {
-    options.AddDefaultPolicy(builder =>
+    builder.Services.AddCors(options =>
     {
-        builder.AllowAnyOrigin()
-               .AllowAnyHeader()
-               .AllowAnyMethod();
+        options.AddDefaultPolicy(builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
     });
-});
+}
+
+
+
 
 
 // Register and configure IChatClient
-IChatClient ollamaClient = new OllamaChatClient(new Uri("http://host.docker.internal:11434/"), modelId: "llama3.2");
-IChatClient client = new ChatClientBuilder(ollamaClient).UseFunctionInvocation().Build();
+//pull out the ClientConfig from the appsettings
+var config = builder.Configuration.GetSection("ChatClientConfig").Get<ChatClientConfig>();
+// run LLM locally with ollama see https://github.com/ollama/ollama,  this is configured to use the llama3.2 model, if you don't change any configuration in the docker-compose.overeride.yml file
+IChatClient chatClient = isDev ? new OllamaChatClient(new Uri(config.Uri), modelId: config.ModelName) : new OpenAIClient(Environment.GetEnvironmentVariable(config.APIKey)).AsChatClient(config.ModelName); 
+IChatClient client = new ChatClientBuilder(chatClient).UseFunctionInvocation().Build();
 builder.Services.AddChatClient(client)
     .ConfigureOptions(options =>
     {
@@ -38,11 +49,12 @@ var app = builder.Build();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
-app.UseCors();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseCors();
     app.UseSwagger();
     app.UseSwaggerUI();
 }

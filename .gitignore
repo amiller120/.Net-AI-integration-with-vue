@@ -34,3 +34,9 @@ obj/
 
 # Ignore coverage reports
 coverage/
+
+certs/key.pem
+
+certs/aspnetapp.pfx
+
+certs/cert.pem

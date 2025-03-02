@@ -12,6 +12,8 @@ services:
       - ASPNETCORE_HTTPS_PORTS=5001
       - ASPNETCORE_Kestrel__Certificates__Default__Password=password
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - CHATCLIENTCONFIG__MODELNAME=llama3.2 #this should match the model you are running
+      - CHATCLIENTCONFIG__URI=http://host.docker.internal:11434/
     ports:
       - "5001:5001"
     volumes:
